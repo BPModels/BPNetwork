@@ -32,21 +32,21 @@ protocol BPRequest {
 extension BPRequest {
 
     public var header: [String : String] {
-        let uniqueId = UIDevice.IDFA == "00000000-0000-0000-0000-000000000000" ? UIDevice.IDFV ?? "" : UIDevice.IDFA
+//        let uniqueId = UIDevice.IDFA == "00000000-0000-0000-0000-000000000000" ? UIDevice.IDFV ?? "" : UIDevice.IDFA
         let _header = ["Content-Type"   : "application/json",
                        "Connection"     : "keep-alive",
-                       "token"          : BPUserModel.share.token,
+                       "token"          : "BPUserModel.share.token",
                        "From-Type"      : "2",// iOS
-                       "BP-OS-VERSION"  : UIDevice.OSVersion,
-                       "BP-APP-VERSION" : Bundle.appVersion,
-                       "BP-APP-BUILD"   : Bundle.appBuild,
+                       "BP-OS-VERSION"  : "UIDevice.OSVersion",
+                       "BP-APP-VERSION" : "Bundle.appVersion",
+                       "BP-APP-BUILD"   : "Bundle.appBuild",
                        "BP-CHANNEL-ID"  : "AppStore",
                        "BP-CLIENT-ID"   : "100",
-                       "BP-MODEL"       : UIDevice.deviceName,
-                       "BP-TIMESTAMP"   : "\(Int(Date().timeIntervalSince1970))",
-                       "org_id"         : "\(BPUserModel.share.organizationId ?? 0)",
-                       "project_id"     : "\(BPUserModel.share.projectId ?? 0)",
-                       "unique_id"      : uniqueId
+                       "BP-MODEL"       : "UIDevice.deviceName",
+                       "BP-TIMESTAMP"   : "(Int(Date().timeIntervalSince1970))",
+                       "org_id"         : "(BPUserModel.share.organizationId ?? 0)",
+                       "project_id"     : "(BPUserModel.share.projectId ?? 0)",
+                       "unique_id"      : "uniqueId"
         ]
         
         return _header

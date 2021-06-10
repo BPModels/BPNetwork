@@ -42,5 +42,10 @@ TODO: Add long description of the pod here.
    s.dependency 'Alamofire', '~> 4.8.2'
    # JSON转对象
    s.dependency 'ObjectMapper', '~> 3.5.1'
+   # JSON转对象的配合网络请求
+   s.dependency 'AlamofireObjectMapper', '~> 5.2'
+   # 日志库
    s.dependency 'BPLog'
+   # 设备信息库
+   s.dependency 'BPDeviceInfo'
 end

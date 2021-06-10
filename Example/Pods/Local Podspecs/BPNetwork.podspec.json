@@ -23,7 +23,16 @@
     "Alamofire": [
       "~> 4.8.2"
     ],
+    "ObjectMapper": [
+      "~> 3.5.1"
+    ],
+    "AlamofireObjectMapper": [
+      "~> 5.2"
+    ],
     "BPLog": [
+
+    ],
+    "BPDeviceInfo": [
 
     ]
   }
