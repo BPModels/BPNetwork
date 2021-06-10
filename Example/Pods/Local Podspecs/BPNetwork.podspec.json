@@ -1,0 +1,30 @@
+{
+  "name": "BPNetwork",
+  "version": "0.1.0",
+  "summary": "A short description of BPNetwork.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/BPModels/BPNetwork",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "TestEngineerFish": "916878440@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/BPModels/BPNetwork.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "BPNetwork/Classes/**/*",
+  "dependencies": {
+    "Alamofire": [
+      "~> 4.8.2"
+    ],
+    "BPLog": [
+
+    ]
+  }
+}

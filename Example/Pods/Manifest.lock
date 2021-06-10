@@ -1,0 +1,16 @@
+PODS:
+  - BPNetwork (0.1.0)
+
+DEPENDENCIES:
+  - BPNetwork (from `../`)
+
+EXTERNAL SOURCES:
+  BPNetwork:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BPNetwork: f2e22f732eeeb17c142fd58893d8e438c8e531cb
+
+PODFILE CHECKSUM: 6b9825d0ec55de259616fad35f1d6d586907a68c
+
+COCOAPODS: 1.10.1
