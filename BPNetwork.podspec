@@ -37,6 +37,10 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
+  
+   # 网络请求
    s.dependency 'Alamofire', '~> 4.8.2'
+   # JSON转对象
+   s.dependency 'ObjectMapper', '~> 3.5.1'
    s.dependency 'BPLog'
 end
