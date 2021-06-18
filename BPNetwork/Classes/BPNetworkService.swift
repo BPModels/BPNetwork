@@ -280,17 +280,17 @@ struct BPNetworkService {
 //                BPUserModel.share.logoutAction()
 //            }.show()
 //        default:
-            if let errorMsg = baseResponse.statusMessage {
-                if errorMsg == "登录状态已过期" {
+//            if let errorMsg = baseResponse.statusMessage {
+//                if errorMsg == "登录状态已过期" {
                     /// 登录状态已过期
-                    BPAlertManager.share.oneButton(title: "提示", description: "用户信息已失效，请重新登录", buttonName: "好的") {
-                        BPUserModel.share.logoutAction()
-                    }.show()
-                } else {
-                    fail?(NSError(domain: "com.tenant.httpError", code: responseStatusCode, userInfo: [NSLocalizedDescriptionKey : errorMsg]))
+//                    BPAlertManager.share.oneButton(title: "提示", description: "用户信息已失效，请重新登录", buttonName: "好的") {
+//                        BPUserModel.share.logoutAction()
+//                    }.show()
+//                } else {
+//                    fail?(NSError(domain: "com.tenant.httpError", code: responseStatusCode, userInfo: [NSLocalizedDescriptionKey : errorMsg]))
                     //BPRequestLogString(format: "【❌Fail】 POST = request url:%@, error:%@", urlStr, errorMsg))
-                }
-            }
+//                }
+//            }
 //        }
     }
     
@@ -314,7 +314,7 @@ struct BPNetworkService {
             return true
         }
         if !isAuth {
-            BPAuthorizationManager.share.showAlert(type: .network)
+//            BPAuthorizationManager.share.showAlert(type: .network)
             //BPLog("【网络权限被关闭】")
         }
         return false

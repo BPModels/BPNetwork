@@ -34,3 +34,31 @@ public var domainApi: String {
         return currentEnv.api
     }
 }
+
+/// 是否有网络权限
+var isAuth: Bool {
+    let status = BPNetworkAuthManager.default.state
+    return status != .restricted
+}
+
+/// 是否有网络
+public var isReachable: Bool {
+    get {
+        return NetworkReachabilityManager()?.isReachable ?? false
+    }
+}
+
+/// 是否是蜂窝网络,WWAN网络
+/// WWAN（Wireless Wide Area Network，无线广域网）
+public var isReachableOnWWAN: Bool {
+    get {
+        return NetworkReachabilityManager()?.isReachableOnWWAN ?? false
+    }
+}
+
+/// 是否是Wi-Fi或者以太网网络
+public var isReachableOnEthernetOrWiFi: Bool {
+    get {
+        return NetworkReachabilityManager()?.isReachableOnEthernetOrWiFi ?? false
+    }
+}
