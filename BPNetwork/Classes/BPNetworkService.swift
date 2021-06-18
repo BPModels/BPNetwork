@@ -55,12 +55,12 @@ struct BPNetworkService {
                         self.handleStatusCodeLogicResponseObject(response, statusCode: httpStatusCode, request: request, success: success, fail: fail)
                     }, fail: { (error) in
                         fail?(error as NSError)
-                        BPRequestLog("【❌Fail】 POST = request url:%@", request.url.absoluteString, parameters?.toJson() ?? "")
+                        //BPRequestLog"【❌Fail】 POST = request url:%@", request.url.absoluteString, parameters?.toJson() ?? "")
                         return nil
                     }, showLoading: showLoading)
                 } catch let parseError {
                     fail?(parseError as NSError)
-                    BPRequestLog("【❌Fail】 POST = request url:%@", request.url.absoluteString, parameters?.toJson() ?? "")
+                    //BPRequestLog"【❌Fail】 POST = request url:%@", request.url.absoluteString, parameters?.toJson() ?? "")
                     return nil
                 }
             case .get:
@@ -68,7 +68,7 @@ struct BPNetworkService {
                     self.handleStatusCodeLogicResponseObject(response, statusCode: httpStatusCode, request: request, success: success, fail: fail)
                 }, fail: { (error) in
                     fail?(error as NSError)
-                    BPRequestLog("【❌Fail】 GET = request url:%@", request.url.absoluteString, parameters?.toJson() ?? "")
+                    //BPRequestLog"【❌Fail】 GET = request url:%@", request.url.absoluteString, parameters?.toJson() ?? "")
                     return nil
                 }, showLoading: showLoading)
             case .put:
@@ -76,7 +76,7 @@ struct BPNetworkService {
                     self.handleStatusCodeLogicResponseObject(response, statusCode: httpStatusCode, request: request, success: success, fail: fail)
                 }, fail: { (error) in
                     fail?(error as NSError)
-                    BPRequestLog("【❌Fail】 PUT = request url:%@", request.url.absoluteString, parameters?.toJson() ?? "")
+                    //BPRequestLog"【❌Fail】 PUT = request url:%@", request.url.absoluteString, parameters?.toJson() ?? "")
                     return nil
                 }, showLoading: showLoading)
             default:
@@ -105,11 +105,11 @@ struct BPNetworkService {
     @discardableResult
     private func httpPostRequest <T> (_ type: T.Type, request: URLRequest, success:@escaping (_ response: T, _ httpStatusCode: Int) -> Void?, fail: @escaping (_ error: NSError) -> Void?, showLoading: Bool) -> BPTaskRequestDelegate where T: BPBaseResopnse {
         if showLoading {
-            kWindow.showLoading()
+            //kWindow.showLoading()
         }
         
         let urlStr = request.url?.absoluteString ?? ""
-        BPRequestLog(String(format: "【POST】 = request url:%@ params:%@", urlStr, request.allHTTPHeaderFields?.toJson() ?? ""))
+        //BPRequestLogString(format: "【POST】 = request url:%@ params:%@", urlStr, request.allHTTPHeaderFields?.toJson() ?? ""))
         let request = Alamofire.request(request).responseObject { (response: DataResponse<T>) in
             switch response.result {
                 case .success(var x):
@@ -117,13 +117,13 @@ struct BPNetworkService {
                     x.request  = response.request
                     success(x, (response.response?.statusCode) ?? 0)
                     if showLoading {
-                        kWindow.hideLoading()
+                        //kWindow.hideLoading()
                     }
                 case .failure(let error):
                     fail(error as NSError)
-                    BPRequestLog(String(format: "【❌Fail】 POST = request url:%@, error:%@", urlStr, (error as NSError).message))
+                    //BPRequestLogString(format: "【❌Fail】 POST = request url:%@, error:%@", urlStr, (error as NSError).message))
                     if showLoading {
-                        kWindow.hideLoading()
+                        //kWindow.hideLoading()
                     }
             }
         }
@@ -136,11 +136,11 @@ struct BPNetworkService {
     @discardableResult
     private func httpGetRequest <T>(_ type: T.Type, request: BPRequest, header:[String:String], success:@escaping (_ response: T, _ httpStatusCode: Int) -> Void, fail: @escaping (_ error: NSError) -> Void?, showLoading: Bool) -> BPTaskRequestDelegate where T: BPBaseResopnse {
         if showLoading {
-            kWindow.showLoading()
+            //kWindow.showLoading()
         }
         
         let urlStr = request.url.absoluteString
-        BPRequestLog(String(format: "【Get】 = request url:%@ params:%@", urlStr, request.parameters?.toJson() ?? ""))
+        //BPRequestLogString(format: "【Get】 = request url:%@ params:%@", urlStr, request.parameters?.toJson() ?? ""))
         let request = Alamofire.request(request.url, method: HTTPMethod.get, parameters: requestParametersReduceValueNil(request.parameters), encoding: URLEncoding.default, headers: header).responseObject { (response: DataResponse <T>) in
             switch response.result {
                 case .success(var x):
@@ -148,13 +148,13 @@ struct BPNetworkService {
                     x.request  = response.request
                     success(x, (response.response?.statusCode) ?? 0)
                     if showLoading {
-                        kWindow.hideLoading()
+                        //kWindow.hideLoading()
                     }
                 case .failure(let error):
                     fail(error as NSError)
-                    BPRequestLog(String(format: "【❌Fail】 POST = request url:%@, error:%@", urlStr, (error as NSError).message))
+                    //BPRequestLogString(format: "【❌Fail】 POST = request url:%@, error:%@", urlStr, (error as NSError).message))
                     if showLoading {
-                        kWindow.hideLoading()
+                        //kWindow.hideLoading()
                     }
             }
         }
@@ -167,11 +167,11 @@ struct BPNetworkService {
     @discardableResult
     private func httpPutRequest <T>(_ type: T.Type, request: BPRequest, header:[String:String], success:@escaping (_ response: T, _ httpStatusCode: Int) -> Void, fail: @escaping (_ error: NSError) -> Void?, showLoading: Bool) -> BPTaskRequestDelegate where T: BPBaseResopnse {
         if showLoading {
-            kWindow.showLoading()
+            //kWindow.showLoading()
         }
         
         let urlStr = request.url.absoluteString
-        BPRequestLog(String(format: "【Get】 = request url:%@ params:%@", urlStr, request.parameters?.toJson() ?? ""))
+        //BPRequestLogString(format: "【Get】 = request url:%@ params:%@", urlStr, request.parameters?.toJson() ?? ""))
         let request = Alamofire.request(request.url, method: HTTPMethod.put, parameters: requestParametersReduceValueNil(request.parameters), encoding: URLEncoding.default, headers: header).responseObject { (response: DataResponse <T>) in
             switch response.result {
                 case .success(var x):
@@ -179,13 +179,13 @@ struct BPNetworkService {
                     x.request  = response.request
                     success(x, (response.response?.statusCode) ?? 0)
                     if showLoading {
-                        kWindow.hideLoading()
+                        //kWindow.hideLoading()
                     }
                 case .failure(let error):
                     fail(error as NSError)
-                    BPRequestLog(String(format: "【❌Fail】 POST = request url:%@, error:%@", urlStr, (error as NSError).message))
+                    //BPRequestLogString(format: "【❌Fail】 POST = request url:%@, error:%@", urlStr, (error as NSError).message))
                     if showLoading {
-                        kWindow.hideLoading()
+                        //kWindow.hideLoading()
                     }
             }
         }
@@ -198,7 +198,7 @@ struct BPNetworkService {
     // TODO: ==== UPLOAD ===
     public func httpUploadRequestTask <T> (_ type: T.Type, request: BPRequest, mimeType: String = "image/jpeg", fileName: String = "photo", success: ((_ response: T) -> Void)?, fail: ((_ responseError: NSError) -> Void)?, showLoading: Bool = true) -> Void where T: BPBaseResopnse {
         if showLoading {
-            kWindow.showLoading()
+            //kWindow.showLoading()
         }
         var requestHeader = request.header
         requestHeader["Content-Type"] = "multipart/form-data"
@@ -206,7 +206,7 @@ struct BPNetworkService {
         let requestParameters = self.requestParametersReduceValueNil(request.parameters)
         guard var parameters  = requestParameters else { return }
         let urlStr = request.url.absoluteString
-        BPRequestLog(String(format: "【Upload】 = request url:%@", urlStr))
+        //BPRequestLogString(format: "【Upload】 = request url:%@", urlStr))
         //MARK: 上传
         Alamofire.upload(multipartFormData: { (multipartFormData) in
             var fileData: Any?
@@ -235,17 +235,17 @@ struct BPNetworkService {
                                 self.handleStatusCodeLogicResponseObject(x, statusCode: (response.response?.statusCode) ?? 0, request: request, success: success, fail: fail)
                             case .failure(let error):
                                 fail?(error as NSError)
-                                BPRequestLog(String(format: "【❌Fail】 POST = request url:%@, error:%@", urlStr, (error as NSError).message))
+                                //BPRequestLogString(format: "【❌Fail】 POST = request url:%@, error:%@", urlStr, (error as NSError).message))
                         }
                     })
                     if showLoading {
-                        kWindow.hideLoading()
+                        //kWindow.hideLoading()
                     }
                 case .failure(let error):
                     fail?(error as NSError)
-                    BPRequestLog(String(format: "【❌Fail】 POST = request url:%@, error:%@", urlStr, (error as NSError).message))
+                    //BPRequestLogString(format: "【❌Fail】 POST = request url:%@, error:%@", urlStr, (error as NSError).message))
                     if showLoading {
-                        kWindow.hideLoading()
+                        //kWindow.hideLoading()
                     }
             }
         }
@@ -255,31 +255,31 @@ struct BPNetworkService {
      *  请求状态码逻辑处理
      */
     private func handleStatusCodeLogicResponseObject <T> (_ response: T, statusCode: Int, request: BPRequest, success: ((_ response: T) -> Void)?, fail: ((_ responseError: NSError) -> Void)?) -> Void where T: BPBaseResopnse {
-        let baseResponse       = response as BPBaseResopnse
-        let responseStatusCode = baseResponse.statusCode
-        let urlStr             = request.url.absoluteString
-        switch responseStatusCode {
-        case 200:
-            success?(response)
-            if let responseData: BPStructResponse = baseResponse as? BPStructResponse<T> {
-                BPRequestLog(String(format: "【Success】 request url: %@, respnseObject: %@", urlStr, responseData.data?.toJSON() ?? ""))
-            }
-        case 10101004:
-            /// Token已失效
-            BPAlertManager.share.oneButton(title: "提示", description: "用户信息已失效，请重新登录", buttonName: "好的") {
-                BPUserModel.share.logoutAction()
-            }.show()
-        case 10101016:
-            /// 用户不存在
-            BPAlertManager.share.oneButton(title: "提示", description: "用户信息已失效，请重新登录", buttonName: "好的") {
-                BPUserModel.share.logoutAction()
-            }.show()
-        case 10101024:
-            /// 该账号已在其他移动设备登录
-            BPAlertManager.share.oneButton(title: "提示", description: "该账号已在其他移动设备登录，请注意账号安全。", buttonName: "重新登录") {
-                BPUserModel.share.logoutAction()
-            }.show()
-        default:
+//        let baseResponse       = response as BPBaseResopnse
+//        let responseStatusCode = baseResponse.statusCode
+//        let urlStr             = request.url.absoluteString
+//        switch responseStatusCode {
+//        case 200:
+//            success?(response)
+//            if let responseData: BPStructResponse = baseResponse as? BPStructResponse<T> {
+//                //BPRequestLogString(format: "【Success】 request url: %@, respnseObject: %@", urlStr, responseData.data?.toJSON() ?? ""))
+//            }
+//        case 10101004:
+//            /// Token已失效
+//            BPAlertManager.share.oneButton(title: "提示", description: "用户信息已失效，请重新登录", buttonName: "好的") {
+//                BPUserModel.share.logoutAction()
+//            }.show()
+//        case 10101016:
+//            /// 用户不存在
+//            BPAlertManager.share.oneButton(title: "提示", description: "用户信息已失效，请重新登录", buttonName: "好的") {
+//                BPUserModel.share.logoutAction()
+//            }.show()
+//        case 10101024:
+//            /// 该账号已在其他移动设备登录
+//            BPAlertManager.share.oneButton(title: "提示", description: "该账号已在其他移动设备登录，请注意账号安全。", buttonName: "重新登录") {
+//                BPUserModel.share.logoutAction()
+//            }.show()
+//        default:
             if let errorMsg = baseResponse.statusMessage {
                 if errorMsg == "登录状态已过期" {
                     /// 登录状态已过期
@@ -288,10 +288,10 @@ struct BPNetworkService {
                     }.show()
                 } else {
                     fail?(NSError(domain: "com.tenant.httpError", code: responseStatusCode, userInfo: [NSLocalizedDescriptionKey : errorMsg]))
-                    BPRequestLog(String(format: "【❌Fail】 POST = request url:%@, error:%@", urlStr, errorMsg))
+                    //BPRequestLogString(format: "【❌Fail】 POST = request url:%@, error:%@", urlStr, errorMsg))
                 }
             }
-        }
+//        }
     }
     
     /// 确保参数key对应的Value不为空
@@ -315,7 +315,7 @@ struct BPNetworkService {
         }
         if !isAuth {
             BPAuthorizationManager.share.showAlert(type: .network)
-            BPLog("【网络权限被关闭】")
+            //BPLog("【网络权限被关闭】")
         }
         return false
     }

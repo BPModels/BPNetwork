@@ -18,7 +18,7 @@ class BPNetworkAuthManager: NSObject {
     private override init() {
         super.init()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(networkChange(_:)), name: BPNotification.kNetworkAuth, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(networkChange(_:)), name: kNetworkAuth, object: nil)
     }
     
     func check() {
@@ -29,6 +29,6 @@ class BPNetworkAuthManager: NSObject {
     @objc func networkChange(_ notification: Notification) {
         
         self.state = ZYNetworkAccessibity.currentState()
-        BPLog(state?.rawValue ?? -1, "网络权限变化")
+        //BPLog(state?.rawValue ?? -1, "网络权限变化")
     }
 }

@@ -473,7 +473,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
             if([[UIApplication sharedApplication] canOpenURL:settingsURL]) {
                 [[UIApplication sharedApplication] openURL:settingsURL options:@{} completionHandler:^(BOOL success) {
                     if (success) {
-                        BPLog(@"去设置中打开网络权限");
+                        //BPLog(@"去设置中打开网络权限");
                     }
                 }];
             }

@@ -7,6 +7,9 @@
 
 import Foundation
 
+/// 网络授权变化
+public var kNetworkAuth = NSNotification.Name.ZYNetworkAccessibityChanged
+
 /// 获取当前环境
 public var currentEnv: BPEnvType {
     get {
