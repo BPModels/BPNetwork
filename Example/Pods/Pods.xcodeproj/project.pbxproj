@@ -7,15 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22A26F17267C2C80009208AC /* BPEnvType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A26F15267C2C80009208AC /* BPEnvType.swift */; };
-		22A26F18267C2C80009208AC /* BPNetworkGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A26F16267C2C80009208AC /* BPNetworkGlobal.swift */; };
-		22A26F1C267C31D9009208AC /* ZYNetworkAccessibity.h in Headers */ = {isa = PBXBuildFile; fileRef = 22A26F19267C31D9009208AC /* ZYNetworkAccessibity.h */; };
-		22A26F1D267C31D9009208AC /* BPNetworkAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A26F1A267C31D9009208AC /* BPNetworkAuthManager.swift */; };
-		22A26F1E267C31D9009208AC /* ZYNetworkAccessibity.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A26F1B267C31D9009208AC /* ZYNetworkAccessibity.m */; };
-		22D0D50F2670C74E0039350A /* BPBaseResopnse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D0D5092670C74E0039350A /* BPBaseResopnse.swift */; };
-		22D0D5112670C74E0039350A /* BPBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D0D50B2670C74E0039350A /* BPBaseRequest.swift */; };
-		22D0D5122670C74E0039350A /* BPNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D0D50C2670C74E0039350A /* BPNetworkService.swift */; };
-		22D0D5132670C74E0039350A /* BPTaskRequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D0D50D2670C74E0039350A /* BPTaskRequestDelegate.swift */; };
 		3ABC3E33018F6AD7AD08D74305F25B88 /* Pods-BPNetwork_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 673C5CFC5B007BB866184365EE504B2B /* Pods-BPNetwork_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E91E4837A9A2815FCE439FE02E7B903 /* Pods-BPNetwork_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B80B249999806F3FECD3B8E53F9CD9 /* Pods-BPNetwork_Example-dummy.m */; };
 		42C981678DEC9B0A484459574391768F /* BPNetwork-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E0788AD19373CA3A1EE4E3C7802741 /* BPNetwork-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -45,15 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		22A26F15267C2C80009208AC /* BPEnvType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPEnvType.swift; path = ../BPNetwork/Classes/BPEnvType.swift; sourceTree = "<group>"; };
-		22A26F16267C2C80009208AC /* BPNetworkGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPNetworkGlobal.swift; path = ../BPNetwork/Classes/BPNetworkGlobal.swift; sourceTree = "<group>"; };
-		22A26F19267C31D9009208AC /* ZYNetworkAccessibity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZYNetworkAccessibity.h; path = ../BPNetwork/Classes/ZYNetworkAccessibity.h; sourceTree = "<group>"; };
-		22A26F1A267C31D9009208AC /* BPNetworkAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPNetworkAuthManager.swift; path = ../BPNetwork/Classes/BPNetworkAuthManager.swift; sourceTree = "<group>"; };
-		22A26F1B267C31D9009208AC /* ZYNetworkAccessibity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZYNetworkAccessibity.m; path = ../BPNetwork/Classes/ZYNetworkAccessibity.m; sourceTree = "<group>"; };
-		22D0D5092670C74E0039350A /* BPBaseResopnse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPBaseResopnse.swift; path = ../BPNetwork/Classes/BPBaseResopnse.swift; sourceTree = "<group>"; };
-		22D0D50B2670C74E0039350A /* BPBaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPBaseRequest.swift; path = ../BPNetwork/Classes/BPBaseRequest.swift; sourceTree = "<group>"; };
-		22D0D50C2670C74E0039350A /* BPNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPNetworkService.swift; path = ../BPNetwork/Classes/BPNetworkService.swift; sourceTree = "<group>"; };
-		22D0D50D2670C74E0039350A /* BPTaskRequestDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPTaskRequestDelegate.swift; path = ../BPNetwork/Classes/BPTaskRequestDelegate.swift; sourceTree = "<group>"; };
 		266F4E3A7B6F07851E01C50C3F7EF17B /* Pods-BPNetwork_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BPNetwork_Tests-umbrella.h"; sourceTree = "<group>"; };
 		281933C3B089A9F7942859CADA58387E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		2A6DB795E7E1CF1528308254A5750144 /* Pods-BPNetwork_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BPNetwork_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,15 +101,6 @@
 		22D0D5072670C73E0039350A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				22A26F1A267C31D9009208AC /* BPNetworkAuthManager.swift */,
-				22A26F19267C31D9009208AC /* ZYNetworkAccessibity.h */,
-				22A26F1B267C31D9009208AC /* ZYNetworkAccessibity.m */,
-				22A26F15267C2C80009208AC /* BPEnvType.swift */,
-				22A26F16267C2C80009208AC /* BPNetworkGlobal.swift */,
-				22D0D50B2670C74E0039350A /* BPBaseRequest.swift */,
-				22D0D5092670C74E0039350A /* BPBaseResopnse.swift */,
-				22D0D50C2670C74E0039350A /* BPNetworkService.swift */,
-				22D0D50D2670C74E0039350A /* BPTaskRequestDelegate.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -262,7 +235,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22A26F1C267C31D9009208AC /* ZYNetworkAccessibity.h in Headers */,
 				42C981678DEC9B0A484459574391768F /* BPNetwork-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,15 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22D0D5112670C74E0039350A /* BPBaseRequest.swift in Sources */,
-				22A26F17267C2C80009208AC /* BPEnvType.swift in Sources */,
-				22D0D5122670C74E0039350A /* BPNetworkService.swift in Sources */,
-				22A26F18267C2C80009208AC /* BPNetworkGlobal.swift in Sources */,
 				88ED08915AA0A7936978FCEE02ED7B4C /* BPNetwork-dummy.m in Sources */,
-				22A26F1E267C31D9009208AC /* ZYNetworkAccessibity.m in Sources */,
-				22D0D50F2670C74E0039350A /* BPBaseResopnse.swift in Sources */,
-				22A26F1D267C31D9009208AC /* BPNetworkAuthManager.swift in Sources */,
-				22D0D5132670C74E0039350A /* BPTaskRequestDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
