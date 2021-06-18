@@ -1,6 +1,6 @@
 {
   "name": "BPNetwork",
-  "version": "0.1.6",
+  "version": "0.1.9",
   "summary": "A short description of BPNetwork.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/BPModels/BPNetwork",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/BPModels/BPNetwork.git",
-    "tag": "0.1.6"
+    "tag": "0.1.9"
   },
   "platforms": {
     "ios": "10.0"
@@ -30,10 +30,10 @@
     "AlamofireObjectMapper": [
       "~> 5.2"
     ],
-    "BPLog": [
-
-    ],
     "BPDeviceInfo": [
+      "~> 0.1.3"
+    ],
+    "BPLog": [
 
     ]
   },

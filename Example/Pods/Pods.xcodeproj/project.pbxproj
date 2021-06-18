@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22A26F21267C6770009208AC /* BPEnvType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A26F1F267C6770009208AC /* BPEnvType.swift */; };
 		3ABC3E33018F6AD7AD08D74305F25B88 /* Pods-BPNetwork_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 673C5CFC5B007BB866184365EE504B2B /* Pods-BPNetwork_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3E91E4837A9A2815FCE439FE02E7B903 /* Pods-BPNetwork_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B80B249999806F3FECD3B8E53F9CD9 /* Pods-BPNetwork_Example-dummy.m */; };
 		42C981678DEC9B0A484459574391768F /* BPNetwork-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E0788AD19373CA3A1EE4E3C7802741 /* BPNetwork-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22A26F1F267C6770009208AC /* BPEnvType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPEnvType.swift; path = ../BPNetwork/Classes/BPEnvType.swift; sourceTree = "<group>"; };
 		266F4E3A7B6F07851E01C50C3F7EF17B /* Pods-BPNetwork_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BPNetwork_Tests-umbrella.h"; sourceTree = "<group>"; };
 		281933C3B089A9F7942859CADA58387E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		2A6DB795E7E1CF1528308254A5750144 /* Pods-BPNetwork_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BPNetwork_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		22D0D5072670C73E0039350A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				22A26F1F267C6770009208AC /* BPEnvType.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88ED08915AA0A7936978FCEE02ED7B4C /* BPNetwork-dummy.m in Sources */,
+				22A26F21267C6770009208AC /* BPEnvType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,7 +500,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-BPNetwork_Tests/Pods-BPNetwork_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-BPNetwork_Tests/Pods-BPNetwork_Tests.modulemap";
@@ -528,7 +532,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-BPNetwork_Example/Pods-BPNetwork_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-BPNetwork_Example/Pods-BPNetwork_Example.modulemap";
@@ -560,7 +564,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-BPNetwork_Example/Pods-BPNetwork_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-BPNetwork_Example/Pods-BPNetwork_Example.modulemap";
@@ -625,7 +629,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-BPNetwork_Tests/Pods-BPNetwork_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-BPNetwork_Tests/Pods-BPNetwork_Tests.modulemap";
