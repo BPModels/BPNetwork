@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 /// 网络授权变化
 public var kNetworkAuth = NSNotification.Name.ZYNetworkAccessibityChanged
