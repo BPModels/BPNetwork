@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22A26F17267C2C80009208AC /* BPEnvType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A26F15267C2C80009208AC /* BPEnvType.swift */; };
+		22A26F18267C2C80009208AC /* BPNetworkGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A26F16267C2C80009208AC /* BPNetworkGlobal.swift */; };
 		22D0D50E2670C74E0039350A /* Manage in Resources */ = {isa = PBXBuildFile; fileRef = 22D0D5082670C74E0039350A /* Manage */; };
 		22D0D50F2670C74E0039350A /* BPBaseResopnse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D0D5092670C74E0039350A /* BPBaseResopnse.swift */; };
 		22D0D5112670C74E0039350A /* BPBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D0D50B2670C74E0039350A /* BPBaseRequest.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22A26F15267C2C80009208AC /* BPEnvType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPEnvType.swift; path = ../BPNetwork/Classes/BPEnvType.swift; sourceTree = "<group>"; };
+		22A26F16267C2C80009208AC /* BPNetworkGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPNetworkGlobal.swift; path = ../BPNetwork/Classes/BPNetworkGlobal.swift; sourceTree = "<group>"; };
 		22D0D5082670C74E0039350A /* Manage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Manage; path = ../BPNetwork/Classes/Manage; sourceTree = "<group>"; };
 		22D0D5092670C74E0039350A /* BPBaseResopnse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPBaseResopnse.swift; path = ../BPNetwork/Classes/BPBaseResopnse.swift; sourceTree = "<group>"; };
 		22D0D50B2670C74E0039350A /* BPBaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPBaseRequest.swift; path = ../BPNetwork/Classes/BPBaseRequest.swift; sourceTree = "<group>"; };
@@ -111,6 +115,8 @@
 		22D0D5072670C73E0039350A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				22A26F15267C2C80009208AC /* BPEnvType.swift */,
+				22A26F16267C2C80009208AC /* BPNetworkGlobal.swift */,
 				22D0D50B2670C74E0039350A /* BPBaseRequest.swift */,
 				22D0D5092670C74E0039350A /* BPBaseResopnse.swift */,
 				22D0D50C2670C74E0039350A /* BPNetworkService.swift */,
@@ -402,7 +408,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				22D0D5112670C74E0039350A /* BPBaseRequest.swift in Sources */,
+				22A26F17267C2C80009208AC /* BPEnvType.swift in Sources */,
 				22D0D5122670C74E0039350A /* BPNetworkService.swift in Sources */,
+				22A26F18267C2C80009208AC /* BPNetworkGlobal.swift in Sources */,
 				88ED08915AA0A7936978FCEE02ED7B4C /* BPNetwork-dummy.m in Sources */,
 				22D0D50F2670C74E0039350A /* BPBaseResopnse.swift in Sources */,
 				22D0D5132670C74E0039350A /* BPTaskRequestDelegate.swift in Sources */,

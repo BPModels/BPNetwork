@@ -48,4 +48,5 @@ TODO: Add long description of the pod here.
    s.dependency 'BPLog'
    # 设备信息库
    s.dependency 'BPDeviceInfo'
+   
 end
