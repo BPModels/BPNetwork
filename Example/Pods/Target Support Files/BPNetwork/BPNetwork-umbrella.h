@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "ZYNetworkAccessibity.h"
 
 FOUNDATION_EXPORT double BPNetworkVersionNumber;
 FOUNDATION_EXPORT const unsigned char BPNetworkVersionString[];
