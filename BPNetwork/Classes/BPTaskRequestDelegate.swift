@@ -34,7 +34,6 @@ extension BPRequestModel: BPTaskRequestDelegate {
         guard let request = self.taskRequest else {
             return
         }
-
         request.cancel()
     }
 }

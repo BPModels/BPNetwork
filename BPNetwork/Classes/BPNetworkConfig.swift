@@ -27,17 +27,4 @@ public struct BPNetworkConfig {
     public mutating func updateHeader(key: String, value: String) {
         headerParameters[key] = value
     }
-    
-    /// 设置最大并发请求数量
-    /// - Parameter count: 请求数量
-    public func setMaxConcurrentOperation(count: Int) {
-        BPNetworkService.default.maxConcurrentOperationCount = count
-    }
-    
-    /// 设置请求超时时间
-    /// - Parameter time: 超时时间，单位秒（默认10s）
-    public func setRequestTimeOut(time: TimeInterval) {
-        BPNetworkService.default.requestTimeOut = time
-    }
-    
 }

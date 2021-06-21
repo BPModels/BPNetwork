@@ -62,22 +62,8 @@ public struct BPNetworkService {
     
     public weak var delegate: BPNetworkDelegate?
     
-    /// 最大请求数量
-    var maxConcurrentOperationCount: Int = 3
-    /// 请求超时时间，单位秒
-    var requestTimeOut: TimeInterval     = 10
     
-    private var configuration: URLSessionConfiguration {
-        let _configuration = URLSessionConfiguration.default
-        _configuration.timeoutIntervalForRequest = requestTimeOut
-        return _configuration
-    }
-
-    private init() {
-        let sessionManager:SessionManager = Alamofire.SessionManager.init(configuration: self.configuration)
-        sessionManager.session.delegateQueue.maxConcurrentOperationCount = maxConcurrentOperationCount
-    }
-    
+    // MARK: ==== Request ====
     /// 普通HTTP Request, 支持GET、POST、PUT等方式
     /// - Parameters:
     ///   - type: 定义泛型对象类型
@@ -129,7 +115,7 @@ public struct BPNetworkService {
     
   
     
-    // TODO: ==== Request ====
+    // TODO: ---- POST ----
     @discardableResult
     private func httpPostRequest <T> (_ type: T.Type, request: BPRequest, success:@escaping (_ response: T, _ httpStatusCode: Int) -> Void, fail: @escaping (_ error: NSError) -> Void) -> BPTaskRequestDelegate? where T: BPBaseResopnse {
         // 校验url
@@ -148,7 +134,7 @@ public struct BPNetworkService {
                 try _request.httpBody = JSONSerialization.data(withJSONObject: _parameters, options: [])
             }
             // 发起请求
-            let request = Alamofire.request(_request).responseObject { (response: DataResponse<T>) in
+            let request = AF.request(_request).responseObject { (response: DataResponse<T, AFError>) in
                 switch response.result {
                     case .success(var x):
                         x.response = response.response
@@ -158,6 +144,7 @@ public struct BPNetworkService {
                         fail(error as NSError)
                 }
             }
+
             // 返回请求体
             let taskRequest: BPTaskRequestDelegate = BPRequestModel(request: request)
             return taskRequest
@@ -178,7 +165,7 @@ public struct BPNetworkService {
         // 校验参数（移除Value为空的参数）
         let parameters = requestParametersReduceValueNil(request.parameters)
         // 发起请求
-        let task = Alamofire.request(url, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.default, headers: request.header).responseObject { (response: DataResponse <T>) in
+        let task = AF.request(url, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.default, headers: HTTPHeaders(request.header)).responseObject { (response: DataResponse <T, AFError>) in
             switch response.result {
                 case .success(var x):
                     x.response = response.response
@@ -202,7 +189,7 @@ public struct BPNetworkService {
         // 校验参数（移除Value为空的参数）
         let parameters = requestParametersReduceValueNil(request.parameters)
         // 发起请求
-        let task = Alamofire.request(url, method: HTTPMethod.put, parameters: parameters, encoding: URLEncoding.default, headers: request.header).responseObject { (response: DataResponse <T>) in
+        let task = AF.request(url, method: HTTPMethod.put, parameters: parameters, encoding: URLEncoding.default, headers: HTTPHeaders(request.header)).responseObject { (response: DataResponse <T, AFError>) in
             switch response.result {
                 case .success(var x):
                     x.response = response.response
@@ -216,7 +203,7 @@ public struct BPNetworkService {
         return taskRequest
     }
     
-    // TODO: ==== UPLOAD ====
+    // MARK: ==== UPLOAD ====
     /// 上传文件，支持多个文件（参数附件必须是BPFileModel类型，Key是“uploadFileKey”，或者用常量kUploadFilesKey）
     /// - Parameters:
     ///   - type: 对象类型
@@ -225,10 +212,10 @@ public struct BPNetworkService {
     ///   - success: 成功回调
     ///   - fail: 失败回调
     /// - Returns: 返回请求体，支持取消请求
-    public func httpUploadRequestTask <T> (_ type: T.Type, request: BPRequest, uploadProgress: ((Progress) -> Void)?, success: ((_ response: T) -> Void)?, fail: ((_ responseError: NSError) -> Void)?) -> Void where T: BPBaseResopnse {
+    public func httpUploadRequestTask <T> (_ type: T.Type, request: BPRequest, uploadProgress: ((Progress) -> Void)?, success: ((_ response: T) -> Void)?, fail: ((_ responseError: NSError) -> Void)?) -> BPTaskRequestDelegate? where T: BPBaseResopnse {
         // 校验url
         guard let url = request.url else {
-            return
+            return nil
         }
         // 校验参数（移除Value为空的参数）
         let parameters = self.requestParametersReduceValueNil(request.parameters)
@@ -238,60 +225,54 @@ public struct BPNetworkService {
         // 通知外层开始请求
         self.delegate?.requestBefore(request: request)
         // 发起请求
-        Alamofire.upload(multipartFormData: { multipartFormData in
+        
+        let task = AF.upload(multipartFormData: { multipartFormData in
             let fileModelList = parameters?[kUploadFilesKey] as? [BPFileModel]
             // 添加所有文件
             fileModelList?.forEach({ fileModel in
                 multipartFormData.append(fileModel.data, withName: fileModel.name, fileName: fileModel.fileName, mimeType: fileModel.mimeType)
             })
-        }, usingThreshold: UInt64(), to: url, method: HTTPMethod(rawValue: request.method.rawValue) ?? .post, headers: header) { result in
-            switch result {
-            case .success(let uploader, _, _):
-                // 添加进度回调
-                uploader.uploadProgress(queue: DispatchQueue.global()) { progress in
-                    uploadProgress?(progress)
-                    if progress.isFinished {
-                        self.delegate?.requestScuess(response: nil, request: request)
-                    }
-                }
-                // 添加完成回调
-                uploader.responseObject(completionHandler: { (response: DataResponse <T>) in
-                    switch response.result {
-                        case .success(let x):
-                            self.handleStatusCode(x, request: request, success: success, fail: fail)
-                        case .failure(let error):
-                            fail?(error as NSError)
-                            self.delegate?.requestFail(request: request, error: error)
-                    }
-                })
-            case .failure(let error):
-                fail?(error as NSError)
-                self.delegate?.requestFail(request: request, error: error)
+        }, to: url, usingThreshold: UInt64(), method: HTTPMethod(rawValue: request.method.rawValue) , headers: HTTPHeaders(header), interceptor: nil, fileManager: FileManager.default).uploadProgress { progress in
+            uploadProgress?(progress)
+            if progress.isFinished {
+                self.delegate?.requestScuess(response: nil, request: request)
+            }
+        }.responseObject { (response: DataResponse<T, AFError>) in
+            switch response.result {
+                case .success(let x):
+                    self.handleStatusCode(x, request: request, success: success, fail: fail)
+                case .failure(let error):
+                    fail?(error as NSError)
+                    self.delegate?.requestFail(request: request, error: error)
             }
         }
+        let taskRequest: BPTaskRequestDelegate = BPRequestModel(request: task)
+        return taskRequest
     }
     
-    // TODO: ==== Download ====
+    // MARK: ==== Download ====
     /// 下载文件
     /// - Parameters:
     ///   - request: 请求体
     ///   - downloadProgress: 下载进度回调
     ///   - success: 下载成功回调
     ///   - fail: 下载失败回调
-    public func httpDownloadRequestTask (request: BPRequest, downloadProgress: ((Progress) -> Void)?, success: ((_ response: DownloadResponse<Data>) -> Void)?, fail: ((_ responseError: NSError) -> Void)?) -> Void {
+    public func httpDownloadRequestTask (request: BPRequest, downloadProgress: ((Progress) -> Void)?, success: ((_ response: AFDownloadResponse<Data>) -> Void)?, fail: ((_ responseError: NSError) -> Void)?) -> BPTaskRequestDelegate? {
         // 校验url
         guard let url = request.url else {
-            return
+            return nil
         }
         // 配置下载策略（全局搜索）
         let desctination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory, in: .allDomainsMask)
-        Alamofire.download(url, to: desctination).downloadProgress(queue: DispatchQueue.global()) { progress in
+        let task = AF.download(url, to: desctination).downloadProgress(queue: DispatchQueue.global()) { progress in
             // 下载进度
             downloadProgress?(progress)
         }.validate().responseData(queue: DispatchQueue.global()) { data in
             // 下载完成
             success?(data)
         }
+        let taskRequest: BPTaskRequestDelegate = BPRequestModel(request: task)
+        return taskRequest
     }
     
     // MARK: ==== Tools ====

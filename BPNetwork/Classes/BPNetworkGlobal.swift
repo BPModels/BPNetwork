@@ -56,7 +56,7 @@ public var isReachable: Bool {
 /// WWAN（Wireless Wide Area Network，无线广域网）
 public var isReachableOnWWAN: Bool {
     get {
-        return NetworkReachabilityManager()?.isReachableOnWWAN ?? false
+        return NetworkReachabilityManager()?.isReachableOnCellular ?? false
     }
 }
 
