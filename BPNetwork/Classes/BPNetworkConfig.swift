@@ -10,7 +10,7 @@ import Alamofire
 
 public struct BPNetworkConfig {
     
-    public static let share = BPNetworkConfig()
+    public static var share = BPNetworkConfig()
     
     /// 域名
     public var domainApi: String = ""

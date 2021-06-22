@@ -58,7 +58,7 @@ public struct BPFileModel {
 
 public struct BPNetworkService {
     
-    static var `default` = BPNetworkService()
+    public static var `default` = BPNetworkService()
     
     public weak var delegate: BPNetworkDelegate?
     
