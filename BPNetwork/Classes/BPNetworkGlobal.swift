@@ -41,5 +41,3 @@ public var isReachableOnEthernetOrWiFi: Bool {
         return NetworkReachabilityManager()?.isReachableOnEthernetOrWiFi ?? false
     }
 }
-
-//let networkManager = NetworkReachabilityManager()

@@ -49,7 +49,6 @@ public struct BPStructResponse<T: Mappable> : BPBaseResopnse {
 }
 
 extension BPStructResponse {
-
     public var statusCode: Int {
         return status
     }
