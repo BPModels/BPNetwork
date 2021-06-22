@@ -73,7 +73,7 @@ public extension BPRequest {
     }
 
     var url: URL? {
-        var urlStr = currentEnv.api + path
+        var urlStr = BPNetworkConfig.share.domainApi + path
         if method == .get || method == .put {
             urlStr += "/" + getTypeParameter
         }
