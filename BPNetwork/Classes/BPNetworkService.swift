@@ -281,6 +281,8 @@ public struct BPNetworkService {
         let baseResponse       = response as BPBaseResopnse
         let responseStatusCode = baseResponse.statusCode
         let processedCode = self.delegate?.handleStatusCode(code: responseStatusCode) ?? false
+        // 发送通知
+        NotificationCenter.default.post(name: Notification.Name("kBPSendRequestLog"), object: nil, userInfo: ["request" : request, "response" : response])
         // 如果调用方未处理状态码
         if !processedCode {
             if responseStatusCode == 200 {
