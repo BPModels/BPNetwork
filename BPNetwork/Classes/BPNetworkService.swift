@@ -189,12 +189,16 @@ public struct BPNetworkService {
                 return
             }
             // 批量上传的文件
-            if let mData = model.files, mData.length > 0 {
-                multipartFormData.append(mData as Data, withName: "files")
+            model.files.forEach { dataTuple in
+                let name = dataTuple.0
+                let data = dataTuple.1
+                multipartFormData.append(data, withName: "files", fileName: name, mimeType: "application/octet-stream; charset=utf-8")
             }
             /// 单个上传的文件
-            if let fileData = model.file {
-                multipartFormData.append(fileData, withName: "file")
+            if let dataTuple = model.file {
+                let name = dataTuple.0
+                let data = dataTuple.1
+                multipartFormData.append(data, withName: "file", fileName: name, mimeType: "application/octet-stream; charset=utf-8")
             }
             /// 批量上传的文件大小
             if let size = model.fileSize, let data = "\(size)".data(using: .utf8) {

@@ -49,15 +49,14 @@ enum BPMessageRequest: BPRequest {
         let mBytes:[UInt8]  =  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
         let data:Data = Data(bytes: mBytes, count: mBytes.count);
         var model = BPUpLoadFileModel()
-        model.files = NSMutableData(data: data)
-        model.files?.append(data)
+        model.files = [("first", data), ("second", data)]
         model.fileSize = 1111.11
         model.folderId = 222222
         model.orgId = 333333
         model.projectId = 444444
         model.relationId = 555555
         model.relationType = 6
-        model.file = data
+        model.file = ("onley", data)
         model.type = 0
         return [kUploadFilesKey : model]
     }
