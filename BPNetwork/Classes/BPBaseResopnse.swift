@@ -17,11 +17,31 @@ public protocol BPBaseResopnse: Mappable {
     /// 警告消息
     var warningDesc: String? { get }
     /// 返回对象
-    var response: URLResponse? { set get}
+    var response: URLResponse? { set get }
     /// 请求对象
-    var request: URLRequest? { set get}
+    var request: URLRequest? { set get }
 }
 
+/// 数据为空时使用
+public struct BPStructNilResponse: BPBaseResopnse {
+    public var statusCode: Int = 0
+    public var statusMessage: String?
+    public var warningDesc: String?
+    public var response: URLResponse?
+    public var request: URLRequest?
+    
+    /// 根据类型返回具体对象
+    public var data:Any?
+    /// 返回后台完整Data数据
+    public var dataAny: Any?
+    
+    public init?(map: Map) {}
+
+    public mutating func mapping(map: Map) {
+        data      <- map["data"]
+        dataAny   <- map["data"]
+    }
+}
 /// 返回对象时使用
 public struct BPStructResponse<T: Mappable> : BPBaseResopnse {
     

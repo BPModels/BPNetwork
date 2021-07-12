@@ -56,7 +56,6 @@ public struct BPNetworkService {
     
     public weak var delegate: BPNetworkDelegate?
     
-    
     // MARK: ==== Request ====
     /// 普通HTTP Request, 支持GET、POST、PUT等方式
     /// - Parameters:

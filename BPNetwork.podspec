@@ -7,7 +7,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'BPNetwork'
-  s.version          = '0.2.8'
+  s.version          = '0.2.9'
   s.summary          = 'A short description of BPNetwork.'
 
 # This description is used to generate tags and improve search results.
@@ -39,11 +39,11 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   s.swift_versions = '5.0'
   
-   # 网络请求
+   # 网络请求（MIT）
    s.dependency 'Alamofire'
-   # JSON转对象
+   # JSON转对象 （MIT）
    s.dependency 'ObjectMapper'
-   # JSON转对象的配合网络请求
+   # JSON转对象的配合网络请求（MIT）
    s.dependency 'AlamofireObjectMapper'
    
 end
