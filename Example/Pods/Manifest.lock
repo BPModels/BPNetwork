@@ -3,8 +3,8 @@ PODS:
   - AlamofireObjectMapper (6.2.0):
     - Alamofire (= 5.0.0-rc.2)
     - ObjectMapper (~> 3.5.1)
-  - BPNetwork (0.2.2):
-    - Alamofire
+  - BPNetwork (0.2.9):
+    - Alamofire (= 5.0.0-rc.2)
     - AlamofireObjectMapper
     - ObjectMapper
   - ObjectMapper (3.5.3)
@@ -25,7 +25,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
   AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
-  BPNetwork: 24ae6f27a6baa2d5a48f9bf4d53d0da8448c6933
+  BPNetwork: f75da9363a963d1563d2563038857758a29b5895
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
 
 PODFILE CHECKSUM: c78f8fb549a429f5ceb87990e7e04f858a3a071a

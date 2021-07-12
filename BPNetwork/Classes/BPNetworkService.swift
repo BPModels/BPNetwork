@@ -27,29 +27,6 @@ public protocol BPNetworkDelegate: NSObjectProtocol {
     func noAuthNetwork()
 }
 
-/// 通用上传文件模型
-public struct BPFileModel {
-    public var data: Data
-    public var mimeType: String = ""
-    /// 文件名，不包括后缀
-    public var name: String     = ""
-    /// 文件后缀名
-    public var suffix: String   = ""
-    /// 全名+后缀（如赋值则会自动更改name和suffix）
-    public var fileName: String {
-        get {
-            return name + suffix
-        }
-        set {
-            if let dotIndex = newValue.lastIndex(of: ".") {
-                self.name   = String(newValue[newValue.startIndex..<dotIndex])
-                self.suffix = String(newValue[dotIndex..<newValue.endIndex])
-                self.suffix.removeFirst()
-            }
-        }
-    }
-}
-
 public struct BPNetworkService {
     
     public static var `default` = BPNetworkService()
@@ -69,35 +46,35 @@ public struct BPNetworkService {
         // 检测网络
         guard checkNetwork() else { return nil }
         switch request.method {
-            case .post:
-                // 发起请求，并返回请求体
-                return self.httpPostRequest(type, request: request, success: { (response, httpStatusCode) in
-                    // 处理Code
-                    self.handleStatusCode(response, request: request, success: success, fail: fail)
-                }, fail: { (error) in
-                    fail?(error as NSError)
-                })
-            case .get:
-                return self.httpGetRequest(type, request: request, success: { (response, httpStatusCode) in
-                    self.handleStatusCode(response, request: request, success: success, fail: fail)
-                }, fail: { (error) in
-                    fail?(error as NSError)
-                    return nil
-                })
-            case .put:
-                return self.httpPutRequest(type, request: request, success: { (response, httpStatusCode) in
-                    self.handleStatusCode(response, request: request, success: success, fail: fail)
-                }, fail: { (error) in
-                    fail?(error as NSError)
-                    return nil
-                })
-            default:
-                break
+        case .post:
+            // 发起请求，并返回请求体
+            return self.httpPostRequest(type, request: request, success: { (response, httpStatusCode) in
+                // 处理Code
+                self.handleStatusCode(response, request: request, success: success, fail: fail)
+            }, fail: { (error) in
+                fail?(error as NSError)
+            })
+        case .get:
+            return self.httpGetRequest(type, request: request, success: { (response, httpStatusCode) in
+                self.handleStatusCode(response, request: request, success: success, fail: fail)
+            }, fail: { (error) in
+                fail?(error as NSError)
+                return nil
+            })
+        case .put:
+            return self.httpPutRequest(type, request: request, success: { (response, httpStatusCode) in
+                self.handleStatusCode(response, request: request, success: success, fail: fail)
+            }, fail: { (error) in
+                fail?(error as NSError)
+                return nil
+            })
+        default:
+            break
         }
         return nil
     }
     
-  
+    
     
     // TODO: ---- POST ----
     @discardableResult
@@ -120,15 +97,15 @@ public struct BPNetworkService {
             // 发起请求
             let request = AF.request(_request).responseObject { (response: DataResponse<T, AFError>) in
                 switch response.result {
-                    case .success(var x):
-                        x.response = response.response
-                        x.request  = response.request
-                        success(x, (response.response?.statusCode) ?? 0)
-                    case .failure(let error):
-                        fail(error as NSError)
+                case .success(var x):
+                    x.response = response.response
+                    x.request  = response.request
+                    success(x, (response.response?.statusCode) ?? 0)
+                case .failure(let error):
+                    fail(error as NSError)
                 }
             }
-
+            
             // 返回请求体
             let taskRequest: BPTaskRequestDelegate = BPRequestModel(request: request)
             return taskRequest
@@ -150,12 +127,12 @@ public struct BPNetworkService {
         // 发起请求
         let task = AF.request(url, method: HTTPMethod.get, parameters: parameters, encoding: URLEncoding.default, headers: HTTPHeaders(request.header)).responseObject { (response: DataResponse <T, AFError>) in
             switch response.result {
-                case .success(var x):
-                    x.response = response.response
-                    x.request  = response.request
-                    success(x, (response.response?.statusCode) ?? 0)
-                case .failure(let error):
-                    fail(error as NSError)
+            case .success(var x):
+                x.response = response.response
+                x.request  = response.request
+                success(x, (response.response?.statusCode) ?? 0)
+            case .failure(let error):
+                fail(error as NSError)
             }
         }
         let taskRequest: BPTaskRequestDelegate = BPRequestModel(request: task)
@@ -174,12 +151,12 @@ public struct BPNetworkService {
         // 发起请求
         let task = AF.request(url, method: HTTPMethod.put, parameters: parameters, encoding: URLEncoding.default, headers: HTTPHeaders(request.header)).responseObject { (response: DataResponse <T, AFError>) in
             switch response.result {
-                case .success(var x):
-                    x.response = response.response
-                    x.request  = response.request
-                    success(x, (response.response?.statusCode) ?? 0)
-                case .failure(let error):
-                    fail(error as NSError)
+            case .success(var x):
+                x.response = response.response
+                x.request  = response.request
+                success(x, (response.response?.statusCode) ?? 0)
+            case .failure(let error):
+                fail(error as NSError)
             }
         }
         let taskRequest: BPTaskRequestDelegate = BPRequestModel(request: task)
@@ -207,21 +184,54 @@ public struct BPNetworkService {
         var header = request.header
         header["Content-Type"] = "multipart/form-data"
         // 发起请求
-        
         let task = AF.upload(multipartFormData: { multipartFormData in
-            let fileModelList = parameters?[kUploadFilesKey] as? [BPFileModel]
-            // 添加所有文件
-            fileModelList?.forEach({ fileModel in
-                multipartFormData.append(fileModel.data, withName: fileModel.name, fileName: fileModel.fileName, mimeType: fileModel.mimeType)
-            })
+            guard let model = parameters?[kUploadFilesKey] as? BPUpLoadFileModel else {
+                return
+            }
+            // 批量上传的文件
+            if let mData = model.files, mData.length > 0 {
+                multipartFormData.append(mData as Data, withName: "files")
+            }
+            /// 单个上传的文件
+            if let fileData = model.file {
+                multipartFormData.append(fileData, withName: "file")
+            }
+            /// 批量上传的文件大小
+            if let size = model.fileSize, let data = "\(size)".data(using: .utf8) {
+                multipartFormData.append(data, withName: "fileSize")
+            }
+            /// 文件夹ID
+            if let folderId = model.folderId, let data = "\(folderId)".data(using: .utf8) {
+                multipartFormData.append(data, withName: "folderId")
+            }
+            /// 组织ID
+            if let orgId = model.orgId, let data = "\(orgId)".data(using: .utf8) {
+                multipartFormData.append(data, withName: "orgId")
+            }
+            /// 项目ID
+            if let projectId = model.projectId, let data = "\(projectId)".data(using: .utf8) {
+                multipartFormData.append(data, withName: "projectId")
+            }
+            /// 关联ID
+            if let relationId = model.relationId, let data = "\(relationId)".data(using: .utf8) {
+                multipartFormData.append(data, withName: "relationId")
+            }
+            /// 关联ID
+            if let relationType = model.relationType, let data = "\(relationType)".data(using: .utf8) {
+                multipartFormData.append(data, withName: "relationType")
+            }
+            /// 关联ID
+            if let type = model.type, let data = "\(type)".data(using: .utf8) {
+                multipartFormData.append(data, withName: "type")
+            }
         }, to: url, usingThreshold: UInt64(), method: HTTPMethod(rawValue: request.method.rawValue) , headers: HTTPHeaders(header), interceptor: nil, fileManager: FileManager.default).uploadProgress { progress in
             uploadProgress?(progress)
         }.responseObject { (response: DataResponse<T, AFError>) in
             switch response.result {
-                case .success(let x):
-                    self.handleStatusCode(x, request: request, success: success, fail: fail)
-                case .failure(let error):
-                    fail?(error as NSError)
+            case .success(let x):
+                self.handleStatusCode(x, request: request, success: success, fail: fail)
+            case .failure(let error):
+                fail?(error as NSError)
             }
         }
         let taskRequest: BPTaskRequestDelegate = BPRequestModel(request: task)
