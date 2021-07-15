@@ -38,8 +38,11 @@ public struct BPStructNilResponse: BPBaseResopnse {
     public init?(map: Map) {}
 
     public mutating func mapping(map: Map) {
-        data      <- map["data"]
-        dataAny   <- map["data"]
+        statusCode    <- map["code"]
+        statusMessage <- map["msg"]
+        warningDesc   <- map["warning"]
+        data          <- map["data"]
+        dataAny       <- map["data"]
     }
 }
 /// 返回对象时使用
