@@ -7,7 +7,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'BPNetwork'
-  s.version          = '0.3.4'
+  s.version          = '0.3.5'
   s.summary          = 'A short description of BPNetwork.'
 
 # This description is used to generate tags and improve search results.
@@ -27,7 +27,8 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/BPModels/BPNetwork.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '10.0'
+  s.swift_versions = '5.0'
+  s.ios.deployment_target = '11.0'
 
   s.source_files = 'BPNetwork/Classes/**/*'
   
@@ -37,7 +38,6 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.swift_versions = '5.0'
   
    # 网络请求（MIT）
    s.dependency 'Alamofire', '= 5.0.0-rc.2'
