@@ -220,7 +220,7 @@ public struct BPNetworkService {
             if let relationId = model.relationId, let data = "\(relationId)".data(using: .utf8) {
                 multipartFormData.append(data, withName: "relationId")
             }
-            /// 关联ID
+            /// 关联类型
             if let relationType = model.relationType, let data = "\(relationType)".data(using: .utf8) {
                 multipartFormData.append(data, withName: "relationType")
             }
