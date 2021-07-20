@@ -65,6 +65,10 @@ BPNetworkConfig.share.demainWebApi = "http://www.baidu.com"
 
 网络请求 **BPNetworkService**
 
+> Type类型需要继承自 **BPBaseResopnse**，一般对象使用 **BPStructResponse<Model>.self**, 数组对象使用 **BPStructDataArrayResponse<Model>.self**, 需要直接获取值，或者不需要返回值时 **BPStructNilResponse.self** 
+>
+> 其中 **Model** 需要替换为继承自 **Mappable** 的对象
+
 ```swift
     // MARK: ==== GET、POST、PUT ====
     /// 普通HTTP Request, 支持GET、POST、PUT等方式
@@ -101,7 +105,7 @@ BPNetworkConfig.share.demainWebApi = "http://www.baidu.com"
 
 ```
 
-通过协议接收回调
+通过协议接收回调（在AppDelegate的扩展中实现）
 
 ```swift
 /// 网络请求回调协议
@@ -120,6 +124,7 @@ public protocol BPNetworkDelegate: NSObjectProtocol {
     func noAuthNetwork()
 }
 ```
+
 
 
 
