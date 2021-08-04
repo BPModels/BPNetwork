@@ -250,7 +250,7 @@ public struct BPNetworkService {
     ///   - success: 下载成功回调
     ///   - fail: 下载失败回调
     @discardableResult
-    public func httpDownloadRequestTask (request: URL, downloadProgress: ((Progress) -> Void)?, success: ((_ response: Data) -> Void)?, fail: ((_ responseError: AFError) -> Void)?) -> BPTaskRequestDelegate? {
+    public func httpDownloadRequestTask (url: URL, downloadProgress: ((Progress) -> Void)?, success: ((_ response: Data) -> Void)?, fail: ((_ responseError: AFError) -> Void)?) -> BPTaskRequestDelegate? {
         // 配置下载策略（全局搜索）
         let desctination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory, in: .allDomainsMask)
         let task = AF.download(url, to: desctination).downloadProgress(queue: DispatchQueue.global()) { progress in
