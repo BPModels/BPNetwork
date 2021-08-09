@@ -192,7 +192,7 @@ public struct BPNetworkService {
             model.files.forEach { dataTuple in
                 let name = dataTuple.0
                 let data = dataTuple.1
-                multipartFormData.append(data, withName: "files", fileName: name, mimeType: "application/octet-stream; charset=utf-8")
+                multipartFormData.append(data, withName: "file", fileName: name, mimeType: "application/octet-stream; charset=utf-8")
             }
             /// 单个上传的文件
             if let dataTuple = model.file {
@@ -252,7 +252,7 @@ public struct BPNetworkService {
     @discardableResult
     public func httpDownloadRequestTask (url: URL, downloadProgress: ((Progress) -> Void)?, success: ((_ response: Data) -> Void)?, fail: ((_ responseError: AFError) -> Void)?) -> BPTaskRequestDelegate? {
         // 配置下载策略（全局搜索）
-        let desctination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory, in: .allDomainsMask)
+        let desctination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory, in: .allDomainsMask,  options: [.removePreviousFile, .createIntermediateDirectories])
         let task = AF.download(url, to: desctination).downloadProgress(queue: DispatchQueue.global()) { progress in
             // 下载进度
             downloadProgress?(progress)
